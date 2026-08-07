@@ -1,0 +1,13 @@
+record_id,name,aliases,birth_date,countries,topics,notes
+# SCHEMA + ILLUSTRATIVE ROWS ONLY. Multi-valued fields are ;-separated.
+# These entries are INVENTED. They are not real people and this file asserts
+# nothing about anyone. They exist so the repo is runnable from a clean clone
+# and so normalisation has bilingual pairs to exercise.
+# Build step 3 expands this to a few dozen entries. If you replace these with
+# real OpenSanctions records, attribute the source (CC-BY-NC 4.0) in the README.
+seed-001,طارق الهاشمي,Tariq Al-Hashimi;Tarek Alhashimi;طارق الهاشمى,1965-03-12,IQ,role.pep,Cross-script pair plus alef-maqsura variant
+seed-002,محمد عبد الرحمن,Mohammed Abdul Rahman;Muhammad Abd al-Rahman;Mohamad Abdulrahman,1972-11-04,EG,role.pep,The canonical many-spellings case
+seed-003,مُحَمَّد الصالح,Mohammed Al-Saleh;Mohamed Alsaleh,1980-07-21,SY,sanction,Fully vocalised primary form — diacritic stripping
+seed-004,فاطمة الزهراء بن علي,Fatima Al-Zahra Ben Ali;Fatma Zahra Benali,1975-01-30,TN,role.pep,Ta marbuta and a compound given name
+seed-005,أحمد بن إبراهيم,Ahmed Bin Ibrahim;Ahmad ben Brahim,1968-09-15,MA,role.pep,Hamza-carrying alef in both name parts
+seed-006,خالد الهاشمي,Khalid Al-Hashimi;Khaled Alhashemi,1990-05-02,IQ,role.pep,Shares a surname with seed-001 — the hard negative for it

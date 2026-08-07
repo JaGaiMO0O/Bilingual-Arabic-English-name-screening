@@ -1,0 +1,22 @@
+case_id,query,target_id,should_match,category,notes
+# SCHEMA + ONE WORKED EXAMPLE PER CATEGORY. Build step 6 grows this to 60-100 cases.
+# target_id is the watchlist record the case concerns: for a positive, the person
+# the query should find; for a hard negative, the confusable record it must NOT match.
+# should_match is the label: true / false.
+#
+# Category budget to aim for, and the reason for each:
+#   exact              query is a name as published                      ~10
+#   cross_script       Arabic query -> Latin record, and the reverse     ~20  <- the point of the project
+#   spelling_variant   Mohammed / Muhammad / Mohamad                     ~15
+#   diacritic_variant  vocalised vs bare, tatweel, alef-maqsura          ~10
+#   hard_negative      genuinely similar, genuinely not the same person  ~25  <- without these, precision is meaningless
+#   unrelated          no relationship at all; the easy negatives        ~10
+#
+# Hard negatives are the ones to write carefully: shared common surname, first/last
+# transposition, one-letter difference, same surname + different given name.
+ev-001,طارق الهاشمي,seed-001,true,exact,Primary Arabic form as published
+ev-002,Tariq Al-Hashimi,seed-001,true,cross_script,Latin query must reach the Arabic record
+ev-003,Mohamad Abdulrahman,seed-002,true,spelling_variant,Third romanisation of the same name
+ev-004,محمد الصالح,seed-003,true,diacritic_variant,Bare query against a fully vocalised record
+ev-005,خالد الهاشمي,seed-001,false,hard_negative,Same surname; different person — must not match seed-001
+ev-006,Elena Kowalski,seed-002,false,unrelated,No relationship in either script
