@@ -1,0 +1,79 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "name-screening"
+version = "0.1.0"
+description = "Cross-script Arabic/English name screening for sanctions and PEP lists, using multilingual embeddings and FAISS"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { file = "LICENSE" }
+authors = [{ name = "Mohammad Yaghmour", email = "mohammad-m-y@hotmail.com" }]
+keywords = [
+    "nlp",
+    "arabic-nlp",
+    "multilingual",
+    "embeddings",
+    "faiss",
+    "semantic-search",
+    "sanctions-screening",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Natural Language :: Arabic",
+    "Natural Language :: English",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Text Processing :: Linguistic",
+]
+
+dependencies = [
+    "numpy>=1.26",
+    "sentence-transformers>=3.0",
+    "faiss-cpu>=1.8",
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.30",
+    "typer>=0.12",
+    "python-dotenv>=1.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "ruff>=0.6", "httpx>=0.27"]
+
+[project.urls]
+Homepage = "https://github.com/JaGaiMO0O/name-screening"
+Issues = "https://github.com/JaGaiMO0O/name-screening/issues"
+
+[project.scripts]
+name-screening = "name_screening.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/name_screening"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+markers = [
+    # The default test run must pass with no network and no downloaded dataset.
+    # Anything that loads the embedding model or a built index carries this marker
+    # and is deselected by default: `pytest -m "not requires_model"`.
+    "requires_model: requires the embedding model to be available locally",
+    "requires_dataset: requires the full OpenSanctions dataset to be downloaded",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "RUF"]
+
+# RUF001/002/003 flag "ambiguous" Unicode — characters that resemble Latin ones.
+# In a bilingual Arabic/English codebase that fires on the subject matter itself:
+# it reads ا (ARABIC LETTER ALEF) as a suspicious l, and ه (ARABIC LETTER HEH) as
+# an o. The normalisation rules cannot be documented or tested without Arabic
+# literals, so the rule is off here rather than worked around.
+ignore = ["RUF001", "RUF002", "RUF003"]

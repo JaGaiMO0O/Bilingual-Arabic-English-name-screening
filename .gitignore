@@ -1,0 +1,41 @@
+# --- Build artefacts: FAISS index, metadata sidecar, evaluation output ---
+artifacts/
+
+# --- Bulk OpenSanctions data: large, goes stale, redistribution is a licensing
+# question we do not need to have. Fetched at build time by scripts/download_data.py.
+# data/watchlist_seed.csv and data/eval_cases.csv ARE committed. ---
+data/*
+!data/watchlist_seed.csv
+!data/eval_cases.csv
+
+# --- Secrets ---
+.env
+.env.local
+
+# --- Model caches ---
+.cache/
+hf_cache/
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+env/
+
+# --- Tooling ---
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# --- Editors / OS ---
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
